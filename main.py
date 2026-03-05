@@ -1,7 +1,14 @@
 from fastapi import FastAPI
+from db import models
 
-app = FastAPI(title="Marketplace API")
+from db.database import engine
 
-@app.get("/health")
-def health_check():
-    return {"status": "ok"}
+app = FastAPI()
+
+
+
+@app.get("/hello")
+def index():
+    return "Hello Team 1"
+
+models.Base.metadata.create_all(engine)
